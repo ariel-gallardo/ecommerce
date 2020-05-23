@@ -1,0 +1,39 @@
+body{
+    background-image: linear-gradient(to right, rgba(0,100,50,0.7),cyan);
+    color: paleturquoise;
+}
+
+nav{
+    background-color: rgba(18, 74, 194, 0.7);
+}
+
+.Categoria{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.Categoria:hover{
+    text-decoration: none;
+    color:white;
+}
+
+.letraLista, pre{
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+    font-family: 'Open Sans', sans-serif;
+    color: paleturquoise;
+}
+
+h1, h2, h3, h4, h5, h6{
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Work+Sans:wght@700&display=swap');
+    font-family: 'Work Sans', sans-serif;
+}
+
+@media (min-width: 1023px) {
+    .letraLista{
+        font-weight: bolder;
+    }
+
+    p, a{
+        font-weight: bolder;
+    }
+}
