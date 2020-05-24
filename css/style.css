@@ -34,6 +34,7 @@ h1, h2, h3, h4, h5, h6{
     color: whitesmoke;
 }
 
+/* Utilizar letras grandes en ciertos dispositivos */
 @media (min-width: 1023px) {
     .letraLista{
         font-weight: bolder;
@@ -43,3 +44,17 @@ h1, h2, h3, h4, h5, h6{
         font-weight: bolder;
     }
 }
+
+/* Fix Modal con contenedor sticky-top */
+.modal-backdrop {
+    position:relative !important;
+  }
+
+ .modal{
+     background-color: rgba(0,0,0,0.7);
+ } 
+
+ /* Imagenes responsive para cards */
+ .img-thumbnail{
+     height: 200px !important;
+ }
