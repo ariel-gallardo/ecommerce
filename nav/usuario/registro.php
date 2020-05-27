@@ -33,14 +33,14 @@
         <select class = "form-control my-2" name="Localidad">
             <option value = "NULL" selected disabled hidden>Localidad</option>
         </select>
-        <input class = "form-control my-2" type = "text" name = "Calle" placeholder="Calle" required>
-        <input class = "form-control my-2" type = "email" name = "Correo" placeholder="Correo Electrónico" required>
-        <input class = "form-control my-2" type = "password" name = "Password" placeholder="Contraseña" required>
-        <input class = "form-control my-2" type = "password" name = "Password_Verify" placeholder="Repetir Contraseña"
+        <input class = "form-control my-2" type = "text" name = "Calle" placeholder = "Calle" required>
+        <input class = "form-control my-2" type = "email" name = "Correo" placeholder = "Correo Electrónico" required>
+        <input class = "form-control my-2" type = "password" name = "Password" placeholder = "Contraseña" required>
+        <input class = "form-control my-2" type = "password" name = "Password_Verify" placeholder = "Repetir Contraseña"
             required>
         <div class = "float-left my-2">
             <span><b>Foto de Perfil</b></span>
-            <input type = "file" name = "Foto" accept="image/*">
+            <input type = "file" name = "Foto" accept = "image/*">
         </div>
         <button class = "btn btnFormulario mx-1" type = "submit">Registrarse</button>
         <button class = "btn btnFormulario mx-1" type = "reset">Vaciar</button>
