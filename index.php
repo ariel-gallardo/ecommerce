@@ -29,7 +29,6 @@
         <?php include_once 'footer.php' ?>
     </footer>
     <?php
-    
         function subirFoto(){
             if(isset($_FILES["Foto"])){
                 if($_FILES["Foto"]["error"] === UPLOAD_ERR_OK){
@@ -40,19 +39,22 @@
             return false;
         }
 
-
+        
         function crearUsuario(){
             if(isset($_POST)){
                 if(subirFoto()){
-                    return [
-                        "Nombre" => $_POST["Nombre"],
-                        "Apellido" => $_POST["Apellido"],
-                        "Provincia" => $_POST["Provincia"],
-                        "Localidad" => $_POST["Localidad"],
-                        "Calle" => $_POST["Calle"],
-                        "Correo" => $_POST["Correo"],
-                        "Password" => $_POST["Password"]
-                    ];
+                    $passEncriptado = password_hash($_POST["Password"],PASSWORD_DEFAULT);
+                    if(password_verify($_POST["Password_Verify"],$passEncriptado)){
+                        return [
+                            "Nombre" => $_POST["Nombre"],
+                            "Apellido" => $_POST["Apellido"],
+                            "Provincia" => $_POST["Provincia"],
+                            "Localidad" => $_POST["Localidad"],
+                            "Calle" => $_POST["Calle"],
+                            "Correo" => $_POST["Correo"],
+                            "Password" => $passEncriptado
+                        ];
+                    }
                 }
             }
             return null;
