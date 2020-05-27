@@ -39,7 +39,7 @@
             return false;
         }
 
-        
+
         function crearUsuario(){
             if(isset($_POST)){
                 if(subirFoto()){
@@ -59,6 +59,15 @@
             }
             return null;
         }
+
+        function almacenarUsuario(){
+            $usuarios = json_decode(file_get_contents("db/usuarios.txt"),true);
+            $usuarios[] = crearUsuario();
+            $usuarios = json_encode($usuarios);
+            file_put_contents("db/usuarios.txt",$usuarios);
+        }
+
+
         
     ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
