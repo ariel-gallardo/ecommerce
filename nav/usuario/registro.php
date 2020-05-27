@@ -40,7 +40,7 @@
             required>
         <div class = "float-left my-2">
             <span><b>Foto de Perfil</b></span>
-            <input type = "file" name = "Foto" accept = "image/*">
+            <input class = "border-0" type = "file" name = "Foto" accept = "image/*">
         </div>
         <button class = "btn btnFormulario mx-1" type = "submit">Registrarse</button>
         <button class = "btn btnFormulario mx-1" type = "reset">Vaciar</button>
