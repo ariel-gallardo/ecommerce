@@ -15,23 +15,23 @@ h4{
 /*
     Personalización de los casilleros
 */
-select, input, input::placeholder{
+select, input, input::placeholder, textarea{
   opacity: 70%;
   color:white !important; 
 }
 
-input:focus, select:focus{
+input:focus, select:focus, textarea:focus{
   text-shadow: 1px 1px 1px rgba(2, 3, 36,0.6);
   opacity: 100%;
 }
 
-input:focus ,select:focus, input:hover, select:hover, .btnFormulario:focus{
+input:focus ,select:focus, input:hover, select:hover, .btnFormulario:focus, textarea:focus{
   font-weight: bolder !important;
   border-color: white !important;
   border-width: 0.1rem;
 }
 
-input:hover, select:hover, input:hover::placeholder{
+input:hover, select:hover, input:hover::placeholder, textarea:hover{
   text-shadow: 1px 1px 1px rgba(2, 3, 36,0.6);
   opacity: 90%;
 }
