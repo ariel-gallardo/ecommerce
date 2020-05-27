@@ -1,3 +1,7 @@
-svg:hover{
+.Quitar:hover{
     fill:red;
+}
+
+.Pagar:hover{
+    fill:green;
 }
