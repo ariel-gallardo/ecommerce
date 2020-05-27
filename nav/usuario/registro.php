@@ -1,6 +1,6 @@
 <!-- Formulario de Registro -->
 <div class="tab-pane fade in show" id="Registro" role="tabpanel">
-    <form action="." method="POST">
+    <form action="." method="POST" enctype = "multipart/form-data">
         <input class = "form-control my-2" type = "text" name = "Nombre"  placeholder = "Nombre/s" required>
         <input class = "form-control my-2" type = "text" name = "Apellido"  placeholder = "Apellido/s" required>
         <!-- Provincias ordenadas por codigo -->
@@ -40,7 +40,7 @@
             required>
         <div class = "float-left my-2">
             <span><b>Foto de Perfil</b></span>
-            <input type = "file" accept="image/*">
+            <input type = "file" name = "Foto" accept="image/*">
         </div>
         <button class = "btn btnFormulario mx-1" type = "submit">Registrarse</button>
         <button class = "btn btnFormulario mx-1" type = "reset">Vaciar</button>
