@@ -1,0 +1,59 @@
+
+.form-control{
+  background-color: rgba(11, 13, 51,0.6)!important;
+}
+
+.modal-title{
+  background-color: rgba(18, 74, 194, 0.7);
+  color: rgba(30, 39, 46,1.0) !important;
+}
+
+h4{
+  font-weight: bolder;
+}
+
+/*
+    Personalización de los casilleros
+*/
+select, input, input::placeholder{
+  opacity: 70%;
+  color:white !important; 
+}
+
+input:focus, select:focus{
+  text-shadow: 1px 1px 1px rgba(2, 3, 36,0.6);
+  opacity: 100%;
+}
+
+input:focus ,select:focus, input:hover, select:hover, .btnFormulario:focus{
+  font-weight: bolder !important;
+  border-color: white !important;
+  border-width: 0.1rem;
+}
+
+input:hover, select:hover, input:hover::placeholder{
+  text-shadow: 1px 1px 1px rgba(2, 3, 36,0.6);
+  opacity: 90%;
+}
+
+/*
+    Boton en su estado normal
+    Boton al acercar el mouse
+    Boton al hacer click
+*/
+
+.btnFormulario{
+  background-color: rgba(70, 70, 70, 0.3) !important;
+    color: white !important;
+}
+
+.btnFormulario:hover{
+  background-color: rgba(70, 70, 70, 0.5) !important;
+  font-weight: bold;
+}
+
+.btnFormulario:focus{
+  background-color: rgba(70, 70, 70, 0.774) !important;
+  font-weight: bolder;
+  box-shadow: unset !important;
+}
