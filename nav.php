@@ -17,11 +17,13 @@
                     <div class="modal-body">
                         <div class="modal-c-tabs">
                             <ul class="nav nav-tabs md-tabs tabs-2" role="tablist">
+                                <!-- Tabulacion de Usuario -->
                                 <li class="nav-item">
                                     <a class="nav-link text-center" data-toggle="tab" role="tab" href="#Login">
                                         Login
                                     </a>
                                 </li>
+                                <!-- Tabulacion de registro -->
                                 <li class="nav-item">
                                     <a class="nav-link text-center" data-toggle="tab" role="tab" href="#Registro">
                                         Registro
@@ -29,6 +31,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
+                                <!-- Formulario de Usuario -->
                                 <div class="tab-pane fade in show active" id="Login" role="tabpanel">
                                     <form action="" method="POST">
                                         <input class="form-control my-2" type="email" placeholder="Correo Electronico">
@@ -37,10 +40,12 @@
                                         <button class="btn btnFormulario mx-1" type="reset">Vaciar</button>
                                     </form>
                                 </div>
+                                <!-- Formulario de Registro -->
                                 <div class="tab-pane fade in show" id="Registro" role="tabpanel">
                                     <form action="" method="POST">
                                         <input class="form-control my-2" type="text" placeholder="Nombre/s" required>
                                         <input class="form-control my-2" type="text" placeholder="Apellido/s" required>
+                                        <!-- Provincias ordenadas por codigo -->
                                         <select class="form-control my-2" name="Provincia" placeholder="Provincia"
                                             required>
                                             <option value="NULL" selected disabled hidden>Provincia</option>
@@ -94,6 +99,7 @@
             </div>
         </div>
     </li>
+    <!-- Boton del carro de compras -->
     <li class="list-inline-item position-relative btn btn-default btn-rounded m-0 p-0 pr-4">
         <div class="text-center" data-toggle="modal" data-target="#Carro">
             <img src="/img/nav/carro.svg" alt="Carro" width="35vw">
@@ -101,12 +107,14 @@
         </div>
         <div class="modal fade" id="Carro">
             <div class="modal-dialog">
+            <!-- Ventana del carro de compras -->
                 <div class="modal-content text-center">
                     <div class="modal-title">
                         <h4 class="my-3">Carro de Compras</h4>
                     </div>
                     <div class="modal-body">
                         <ul class="list-group p-0">
+                            <!-- Elementos del carro de compras -->
                             <li class="list-group-item border-0 text-left py-0">
                                 <p><span class="mx-2 badge badge-secondary p-0">x3</span>Auriculares Inalambr.<span
                                         class="p-0 badge mx-1">600$ARS</span><svg class="Quitar mx-1"
@@ -205,12 +213,15 @@
 <!-- Lista Menu Acortable -->
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav text-center pl-md-1 mr-auto ml-lg-5 ml-md-2">
+        <!-- Acceso directo a seccion principal -->
         <li class="nav-item">
             <a class="letraLista nav-link m-md-0 p-md-1" href=".">Home</a>
         </li>
+        <!-- Ventana a seccion de preguntas frecuentes -->
         <li class="nav-item">
             <a class="letraLista nav-link m-md-0 p-md-1" data-toggle="modal" data-target="#FAQ">F.A.Q.</a>
         </li>
+        <!-- Ventana con un formulario para comunicarse con el dueño -->
         <li class="nav-item">
             <a class="letraLista nav-link m-md-0 p-md-1" data-toggle="modal" data-target="#Contacto">Contacto</a>
             <div class="modal fade" id="Contacto">
