@@ -1,3 +1,4 @@
+<!--Seccion de Productos-->
 <article class="col my-2">
     <div class="card bg-transparent mx-auto shadow-lg">
         <img class="img-fluid img-thumbnail m-2" src="/img/main/producto/Audio/Auricular/0.jpg">

@@ -1,3 +1,4 @@
+<!--Seccion de Sucursales-->
 <section class="Sucursales text-center">
     <h4>Sucursales</h4>
     <ul class="list-inline">
