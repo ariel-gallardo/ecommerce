@@ -1,12 +1,33 @@
+/* Color del fondo de la Pagina */
 body{
     background-image: linear-gradient(to right, rgba(0,100,50,0.7),cyan);
-    color: paleturquoise;
 }
 
+/* Barra de navegación */
 nav{
     background-color: rgba(18, 74, 194, 0.7);
 }
 
+/*
+    Barra de navegación
+        Letras de lista
+        
+*/
+.letraLista{
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+    font-family: 'Open Sans', sans-serif;
+    color: paleturquoise;
+}
+
+
+/* Titulos */
+h1, h2, h3, h4, h5, h6{
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Work+Sans:wght@700&display=swap');
+    font-family: 'Work Sans', sans-serif;
+    color: whitesmoke;
+}
+
+/* Buscador */
 .Categoria{
     text-decoration: none;
     color: whitesmoke;
@@ -17,22 +38,6 @@ nav{
     color:white;
 }
 
-.letraLista, pre{
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
-    font-family: 'Open Sans', sans-serif;
-    color: paleturquoise;
-}
-
-h1, h2, h3, h4, h5, h6{
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Work+Sans:wght@700&display=swap');
-    font-family: 'Work Sans', sans-serif;
-    color: whitesmoke;
-}
-
-.card{
-    font-weight: bold;
-    color: whitesmoke;
-}
 
 /* Utilizar letras grandes en ciertos dispositivos */
 @media (min-width: 1023px) {
@@ -59,7 +64,7 @@ h1, h2, h3, h4, h5, h6{
      height: 200px !important;
  }
 
- /* Color boton de tarjetas */
+ /* Color boton de articulo - producto */
  .btn-outline-info{
     background-color: rgba(18, 74, 194, 0.3) !important;
     color:whitesmoke !important;
@@ -74,3 +79,9 @@ h1, h2, h3, h4, h5, h6{
     color:rgba(179, 57, 57,1.0) !important;
     font-weight: bold;
  }
+
+ /* Articulo - Producto */
+.card{
+    font-weight: bold;
+    color: whitesmoke;
+}
