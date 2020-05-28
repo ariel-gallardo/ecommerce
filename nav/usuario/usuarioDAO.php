@@ -54,8 +54,16 @@
     }
 
     function desloguearUsuario(){
+        unset($_POST["Correo"]);
+        unset($_POST["Password"]);
         setcookie("Correo","",-1);
         setcookie("Password","",-1);
+        session_destroy();
+        echo
+        "<script>
+            alert('Adios hasta la proxima.');
+            window.location.href = window.location.href;
+        </script>";
     }       
 
     // Busqueda del usuario
@@ -108,6 +116,10 @@
                 </script>";
             }
         }
+    }
+
+    if(isset($_POST["salirPerfil"])){
+        desloguearUsuario();
     }
 ?>
 

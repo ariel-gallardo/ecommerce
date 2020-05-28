@@ -4,18 +4,37 @@
         session_start();
     }
 ?> 
-
 <div class="tab-pane fade in show active" id="Perfil" role="tabpanel">
     <img class = "img-thumbnail my-2" src="/img/foto/idUsuario.jpg">
     <form class = "my-2 mx-2" action="." method = "POST">
-        <h6>Nombre: <?=$_SESSION["Usuario"]["Nombre"]?></h6>
-        <h6>Apellido: <?=$_SESSION["Usuario"]["Apellido"]?></h6>
-        <h6>Provincia: <?=$_SESSION["Usuario"]["Provincia"]?></h6>
-        <h6>Localidad: <?=$_SESSION["Usuario"]["Localidad"]?></h6>
-        <h6>Calle: <?=$_SESSION["Usuario"]["Calle"]?></h6>
-        <h6>Correo: <?=$_SESSION["Usuario"]["Correo"]?></h6>
-        <button name = "modificarPerfil">Modificar</button>
-        <button name = "guardarPerfil">Guardar</button>
+        <div class="form-group">
+            <label for="Nombre"><b>Nombre</b></label>
+            <input class = "form-control" name = "Nombre" type = "text" placeholder = "<?=$_SESSION["Usuario"]["Nombre"]?>">
+        </div>    
+        <div class="form-group">
+            <label for="Apellido"><b>Apellido</b></label>
+            <input class = "form-control" name = "Apellido" type = "text" placeholder = "<?=$_SESSION["Usuario"]["Apellido"]?>">
+        </div>    
+        <div class="form-group">
+            <label for="Provincia"><b>Provincia</b></label>
+            <input class = "form-control" name = "Provincia" type = "text" placeholder = "<?=$_SESSION["Usuario"]["Provincia"]?>">
+        </div>    
+        <div class="form-group">
+            <label for="Localidad"><b>Localidad</b></label>
+            <input class = "form-control" name = "Localidad" type = "text" placeholder = "<?=$_SESSION["Usuario"]["Localidad"]?>">
+        </div>    
+        <div class="form-group">
+            <label for="Calle"><b>Calle</b></label>
+            <input class = "form-control" name = "Calle" type = "text" placeholder = "<?=$_SESSION["Usuario"]["Calle"]?>">
+        </div>    
+        <div class="form-group">
+            <label for="Correo"><b>Correo</b></label>
+            <input class = "form-control" name = "Correo" type = "email" placeholder = "<?=$_SESSION["Usuario"]["Correo"]?>" disabled>
+        </div>
+        <div>
+            <button class = "btn btnFormulario float-left" name = "modificarPerfil">Modificar</button>
+            <button class = "btn btnFormulario float-right" name = "salirPerfil">Cerrar Sesión</button>
+        </div>    
     </form>
 </div>
 
