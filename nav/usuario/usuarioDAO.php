@@ -58,8 +58,8 @@
         $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt"),true);
         if(isset($usuarios)){
             foreach($usuarios as $usuario){
-                if($usuario["Correo"] === $_POST["Correo"]){
-                    if(password_verify($_POST["Password"],$usuario["Password"])){
+                if(isset($_POST["Correo"]) ? $usuario["Correo"] === $_POST["Correo"] : $usuario["Correo"] === $_COOKIE["Correo"]){
+                    if(isset($_POST["Password"]) ? password_verify($_POST["Password"],$usuario["Password"]) : $_COOKIE["Password"] === $usuario["Password"]){
                         return $usuario;
                     }
                 }
@@ -68,3 +68,6 @@
         return null;
     }
 ?>   
+
+
+
