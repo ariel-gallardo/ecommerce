@@ -1,5 +1,9 @@
 <?php
-    include_once 'usuarioDAO.php'
+    include_once 'usuarioDAO.php';
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    
 ?>
 
 <!-- Formulario de Usuario -->
@@ -14,7 +18,9 @@
 
 <?php
     if(isset($_POST)){
-        if(isset($_POST["Correo"]) && isset($_POST["Password"]) && !isset($_POST["Verify_Password"])){
+        if(isset($_SESSION["Usuario"])){
+
+        }else if((isset($_POST["Correo"]) && isset($_POST["Password"]) && !isset($_POST["Verify_Password"])) || isset($_COOKIE["Correo"], $_COOKIE["Password"])){
             $_SESSION["Usuario"] = buscarUsuario();
             if(loguearUsuario($_SESSION["Usuario"])){
                 echo "<script>alert('Bienvenido ".$_SESSION["Usuario"]["Nombre"]."')</script>";
