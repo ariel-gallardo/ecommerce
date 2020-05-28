@@ -1,32 +1,4 @@
-<?php
-        function buscarUsuario(){
-            $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt"),true);
-            if(isset($usuarios)){
-                foreach($usuarios as $usuario){
-                    if($usuario["Correo"] === $_POST["Correo"]){
-                        if(password_verify($_POST["Password"],$usuario["Password"])){
-                            return $usuario;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-        
-        function loguearUsuario($usuario){
-            if(isset($usuario)){
-                setcookie("Correo",$usuario["Correo"]);
-                setcookie("Password",$usuario["Password"]);
-                return true;
-            }
-            return false;
-        }
-
-        function desloguearUsuario(){
-            setcookie("Correo","",-1);
-            setcookie("Password","",-1);
-        }   
-?>
+<?php include_once 'usuarioDAO.php' ?>
 
 <!-- Formulario de Usuario -->
 <div class="tab-pane fade in show active" id="Login" role="tabpanel">

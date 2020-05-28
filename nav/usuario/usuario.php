@@ -1,4 +1,4 @@
-
+<?php include_once 'usuarioDAO.php' ?>
 
 <!-- Seccion del Usuario -->
 <div class="text-center" data-toggle="modal" data-target="#Usuario">

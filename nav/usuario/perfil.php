@@ -1,3 +1,5 @@
+<?php include_once 'usuarioDAO.php' ?>
+
 <div class="tab-pane fade in show active" id="Perfil" role="tabpanel">
     <img class = "img-thumbnail float-left my-2" src="/img/foto/idUsuario.jpg">
     <div class = "float-left">
