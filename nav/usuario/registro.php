@@ -9,7 +9,6 @@
             return false;
         }
 
-
         function crearUsuario(){
             if(isset($_POST)){
                 if(subirFoto()){

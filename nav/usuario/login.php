@@ -1,10 +1,12 @@
 <?php
         function buscarUsuario(){
-            $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/db/usuarios.txt"),true);
-            foreach($usuarios as $usuario){
-                if($usuario["Correo"] === $_POST["Correo"]){
-                    if(password_verify($_POST["Password"],$usuario["Password"])){
-                        return $usuario;
+            $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt"),true);
+            if(isset($usuarios)){
+                foreach($usuarios as $usuario){
+                    if($usuario["Correo"] === $_POST["Correo"]){
+                        if(password_verify($_POST["Password"],$usuario["Password"])){
+                            return $usuario;
+                        }
                     }
                 }
             }
@@ -38,7 +40,7 @@
 
 <?php
     if(isset($_POST)){
-        if(isset($_POST["Correo"]) && isset($_POST["Password"])){
+        if(isset($_POST["Correo"]) && isset($_POST["Password"]) && !isset($_POST["Verify_Password"])){
             $usuario = buscarUsuario();
             loguearUsuario($usuario);
         } 

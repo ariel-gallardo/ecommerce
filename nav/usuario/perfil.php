@@ -1,13 +1,10 @@
 <div class="tab-pane fade in show active" id="Perfil" role="tabpanel">
-    <form action="" method="POST">
-        <input class = "form-control my-2" type = "text" name = "Nombre"  placeholder = "Nombre/s" required value = "">
-        <input class = "form-control my-2" type = "text" name = "Apellido"  placeholder = "Apellido/s" required value = "">
-        <input class = "form-control my-2" type = "text" name = "Provincia"  placeholder = "Provincia" required value = "">
-        <input class = "form-control my-2" type = "text" name = "Localidad"  placeholder = "Localidad" required>
-        <input class = "form-control my-2" type = "text" name = "Calle" placeholder = "Calle" required value = "">
-        <input class = "form-control my-2" type = "email" name = "Correo" placeholder = "Correo Electrónico" required value = "<?=$_COOKIE["Correo"]?>">
-        <input class = "form-control my-2" type = "password" name = "Password" placeholder = "Contraseña" required value = "<?=$_COOKIE["Password"]?>">
-        <input class = "form-control my-2" type = "password" name = "Password_Verify" placeholder = "Repetir Contraseña"
-        required value = "">
-    </form>
+    <img class = "img-thumbnail float-left my-2" src="/img/foto/idUsuario.jpg">
+    <div class = "float-left">
+        <h6>Nombre: <?=$usuario["Nombre"]?></h6>
+        <h6>Apellido: <?=$usuario["Apellido"]?></h6>
+        <h6>Provincia: <?=$usuario["Provincia"]?></h6>
+        <h6>Localidad: <?=$usuario["Localidad"]?></h6>
+        <h6>Correo: <?=$usuario["Correo"]?></h6>
+    </div>
 </div>
