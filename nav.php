@@ -5,7 +5,7 @@
 </a>
 <ul class="list-inline">
     <li class="list-inline-item m-0">
-        <?php include_once 'nav/usuario/usuario.php' ?>
+        <?php include 'nav/usuario/usuario.php' ?>
     </li>
     <!-- Boton del carro de compras -->
     <li class="list-inline-item position-relative btn btn-default btn-rounded m-0 p-0 pr-4">

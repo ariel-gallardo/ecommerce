@@ -42,12 +42,12 @@
             <div class="tab-content">  
             <?php if(isset($_SESSION["Usuario"])): ?> 
             <!-- Perfil del Usuario -->
-                <?php include_once "perfil.php" ?>
+                <?php include "perfil.php" ?>
             <?php else: ?>
                 <!-- Formulario de Login -->
-                    <?php include_once 'login.php' ?>
+                    <?php include 'login.php' ?>
                 <!-- Formulario de Registro -->
-                    <?php include_once 'registro.php' ?>
+                    <?php include 'registro.php' ?>
                 <?php endif; ?>
             </div>
         </div>

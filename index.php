@@ -15,7 +15,7 @@
 <body>
     <!--Seccion de Barra de Navegación-->
     <nav class="navbar navbar-expand-md navbar-dark p-md-1 sticky-top">
-        <?php include_once 'nav.php' ?>
+        <?php include 'nav.php' ?>
     </nav>
     <header>
         <?php include_once 'header.php' ?>
