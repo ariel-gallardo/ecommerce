@@ -1,3 +1,9 @@
+<?php
+    if(!isset($_SESSION)){
+        session_start();
+    }
+?> 
+
 <!--Seccion de Barra de Navegación-->
 <a class="navbar-brand m-0 p-0 nav-link" href="#">
     <h3>S.M.<img src="/img/nav/super.svg" width="40vw" alt="SuperMarket"></h3>

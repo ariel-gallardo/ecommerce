@@ -42,7 +42,7 @@
             required>
         <div class = "my-2">
             <span><b>Foto de Perfil</b></span>
-            <input class = "border-0" type = "file" name = "Foto" accept = "image/*">
+            <input class = "border-0" type = "file" name = "Foto" accept = "image/*" required>
         </div>
         <div class="form-check my-2">
             <input type="checkbox" class="form-check-input" name = "cookies" id="cookies">

@@ -70,11 +70,7 @@
             setcookie("Password","",-1);
         }
         session_destroy();
-        echo
-        "<script>
-            alert('Adios hasta la proxima.');
-            window.location.href = window.location.href;
-        </script>";
+        actualizarSolicitud("Adios hasta la proxima.");
     }       
 
     // Busqueda del usuario
@@ -103,39 +99,29 @@
         }
     }
 
+    function actualizarSolicitud($mensaje){
+        echo "<script>
+                alert('".$mensaje."');
+                window.location.href = window.location.href;
+             </script>";
+    }
+
     if((isset($_POST["Correo"]) && isset($_POST["Password"])) || isset($_COOKIE["Correo"], $_COOKIE["Password"])){
         if(!isset($_SESSION["Usuario"])){ // No hay usuario ingresado en el sistema
             if(isset($_POST["Password_Verify"])){ //Quiere registrarse
                 $usuario = crearUsuario();
                 if(isset($usuario)){
                     almacenarUsuario($usuario);
-                    echo
-                    "<script>
-                        alert('Bienvenido nuevo cliente: ".$usuario["Nombre"]."');
-                        window.location.href = window.location.href;
-                    </script>";
+                    actualizarSolicitud("Bienvenido nuevo cliente: ".$usuario["Nombre"]);
                 }else{
-                    echo
-                        "<script>
-                            alert('Ya existe la cuenta');
-                            window.location.href = window.location.href;
-                        </script>";
+                    actualizarSolicitud("Ya existe la cuenta");
                 }
             }else if(loguearUsuario(buscarUsuario())){ //Quiere loguearse.
-                echo
-                "<script>
-                    alert('Bienvenido ".$_SESSION["Usuario"]["Nombre"]."');
-                    window.location.href = window.location.href;
-                </script>";
-
+                actualizarSolicitud("Bienvenido ".$_SESSION["Usuario"]["Nombre"]);
             }else{ //Quiere loguear pero no existe en el sistema.
                 unset($_POST["Correo"]);
                 unset($_POST["Password"]);
-                echo
-                "<script>
-                    alert('No se encuentran sus datos.');
-                    window.location.href = window.location.href;
-                </script>";
+                actualizarSolicitud("No se encuentran sus datos.");
             }
         }
     }
@@ -147,11 +133,7 @@
     if(isset($_POST["modificarPerfil"])){
         modificarUsuario();
         almacenarUsuario($_SESSION["Usuario"]);
-        echo
-        "<script>
-            alert('Se modificaron los datos con exito');
-            window.location.href = window.location.href;
-        </script>";
+        actualizarSolicitud("Se modificaron los datos con exito.");
     }
 ?>
 
