@@ -1,6 +1,6 @@
 <?php
         function buscarUsuario(){
-            $usuarios = file_get_contents("db/usuarios.txt",true);
+            $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/db/usuarios.txt"),true);
             foreach($usuarios as $usuario){
                 if($usuario["Correo"] === $_POST["Correo"]){
                     if(password_verify($_POST["Password"],$usuario["Password"])){
@@ -29,17 +29,18 @@
 <!-- Formulario de Usuario -->
 <div class="tab-pane fade in show active" id="Login" role="tabpanel">
     <form action="." method="POST">
-        <input class="form-control my-2" type="email" placeholder="Correo Electronico">
-        <input class="form-control my-2" type="password" placeholder="Contraseña">
-        <button class="btn btnFormulario mx-1" type="submit">Ingresar</button>
-        <button class="btn btnFormulario mx-1" type="reset">Vaciar</button>
+        <input class="form-control my-2" name = "Correo" type = "email" placeholder = "Correo Electronico" required>
+        <input class="form-control my-2" name = "Password" type = "password" placeholder = "Contraseña" required>
+        <button class="btn btnFormulario mx-1" type = "submit">Ingresar</button>
+        <button class="btn btnFormulario mx-1" type = "reset">Vaciar</button>
     </form>
 </div>
 
 <?php
     if(isset($_POST)){
-        if(isset($_POST["email"]) && isset($_POST["Password"])){
-            loguearUsuario(buscarUsuario());
+        if(isset($_POST["Correo"]) && isset($_POST["Password"])){
+            $usuario = buscarUsuario();
+            loguearUsuario($usuario);
         } 
     }
 ?>
