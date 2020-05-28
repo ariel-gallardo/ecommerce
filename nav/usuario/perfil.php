@@ -14,6 +14,7 @@
         <h6>Apellido: <?=$_SESSION["Usuario"]["Apellido"]?></h6>
         <h6>Provincia: <?=$_SESSION["Usuario"]["Provincia"]?></h6>
         <h6>Localidad: <?=$_SESSION["Usuario"]["Localidad"]?></h6>
+        <h6>Calle: <?=$_SESSION["Usuario"]["Calle"]?></h6>
         <h6>Correo: <?=$_SESSION["Usuario"]["Correo"]?></h6>
     </div>
 </div>
