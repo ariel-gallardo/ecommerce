@@ -21,7 +21,7 @@ nav{
 
 
 /* Titulos */
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5{
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Work+Sans:wght@700&display=swap');
     font-family: 'Work Sans', sans-serif;
     color: whitesmoke;
