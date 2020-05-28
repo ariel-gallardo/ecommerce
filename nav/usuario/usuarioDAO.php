@@ -1,4 +1,8 @@
 <?php
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    
     // Registración del usuario
         function subirFoto(){
             if(isset($_FILES["Foto"])){
@@ -20,7 +24,7 @@
                             "Nombre" => $_POST["Nombre"],
                             "Apellido" => $_POST["Apellido"],
                             "Provincia" => $_POST["Provincia"],
-                            "Localidad" => $_POST["Localidad"],
+                            "Localidad" => isset($_POST["Localidad"]) ? $_POST["Localidad"] : "Sin Localidad",
                             "Calle" => $_POST["Calle"],
                             "Correo" => $_POST["Correo"],
                             "Password" => $passEncriptado
@@ -31,9 +35,9 @@
             return null;
         }
 
-        function almacenarUsuario(){
+        function almacenarUsuario($usuario){
             $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt"),true);
-            $usuarios[] = crearUsuario();
+            $usuarios[] = $usuario;
             $usuarios = json_encode($usuarios);
             file_put_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt",$usuarios);
         }
@@ -43,6 +47,7 @@
         if(isset($usuario)){
             setcookie("Correo",$usuario["Correo"]);
             setcookie("Password",$usuario["Password"]);
+            $_SESSION["Usuario"] = $usuario;
             return true;
         }
         return false;

@@ -1,4 +1,4 @@
-<?php include_once 'usuarioDAO.php' ?>
+<?php include_once 'usuarioDAO.php'?>
 
 <!-- Formulario de Registro -->
 <div class="tab-pane fade in show" id="Registro" role="tabpanel">
@@ -44,15 +44,7 @@
             <span><b>Foto de Perfil</b></span>
             <input class = "border-0" type = "file" name = "Foto" accept = "image/*">
         </div>
-        <button class = "btn btnFormulario mx-1" type = "submit">Registrarse</button>
+        <button class = "btn btnFormulario mx-1" type = "submit" name = "Registrar">Registrarse</button>
         <button class = "btn btnFormulario mx-1" type = "reset">Vaciar</button>
     </form>
 </div>
-
-<?php
-    if(isset($_POST)){
-        if(isset($_POST["Correo"]) && isset($_POST["Password"]) && isset($_POST["Password_Verify"])){
-            almacenarUsuario();
-        } 
-    }
-?>

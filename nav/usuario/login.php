@@ -16,15 +16,39 @@
 </div>
 
 <?php
-    if((isset($_POST["Correo"]) && isset($_POST["Password"]) && !isset($_POST["Verify_Password"])) || isset($_COOKIE["Correo"], $_COOKIE["Password"])){
-        if(!isset($_SESSION["Usuario"])){
-            $_SESSION["Usuario"] = buscarUsuario();
-            if(loguearUsuario($_SESSION["Usuario"])){
-                echo "<script>alert('Bienvenido ".$_SESSION["Usuario"]["Nombre"]."')</script>";
-                echo "<script>location.reload()</script>";
-            }else{
-                echo "<script>alert('No se encuentran sus datos.')</script>";
-                echo "<script>location.reload()</script>";
+    if((isset($_POST["Correo"]) && isset($_POST["Password"])) || isset($_COOKIE["Correo"], $_COOKIE["Password"])){
+        if(!isset($_SESSION["Usuario"])){ // No hay usuario ingresado en el sistema
+            if(isset($_POST["Password_Verify"])){ //Quiere registrarse
+                $usuario = crearUsuario();
+                if(isset($usuario)){
+                    almacenarUsuario($usuario);
+                    echo
+                    "<script>
+                        alert('Bienvenido nuevo cliente: ".$usuario["Nombre"]."');
+                        window.location.href = window.location.href;
+                    </script>";
+                }else{
+                    echo
+                        "<script>
+                            alert('Ya existe la cuenta');
+                            window.location.href = window.location.href;
+                        </script>";
+                }
+            }else if(loguearUsuario(buscarUsuario())){ //Quiere loguearse.
+                echo
+                "<script>
+                    alert('Bienvenido ".$_SESSION["Usuario"]["Nombre"]."');
+                    window.location.href = window.location.href;
+                </script>";
+
+            }else{ //Quiere loguear pero no existe en el sistema.
+                unset($_POST["Correo"]);
+                unset($_POST["Password"]);
+                echo
+                "<script>
+                    alert('No se encuentran sus datos.');
+                    window.location.href = window.location.href;
+                </script>";
             }
         }
     }
