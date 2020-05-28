@@ -40,9 +40,13 @@
         <input class = "form-control my-2" type = "password" name = "Password" placeholder = "Contraseña" required>
         <input class = "form-control my-2" type = "password" name = "Password_Verify" placeholder = "Repetir Contraseña"
             required>
-        <div class = "float-left my-2">
+        <div class = "my-2">
             <span><b>Foto de Perfil</b></span>
             <input class = "border-0" type = "file" name = "Foto" accept = "image/*">
+        </div>
+        <div class="form-check my-2">
+            <input type="checkbox" class="form-check-input" name = "cookies" id="cookies">
+            <label class="form-check-label" for="cookies">¿Recordarme?</label>
         </div>
         <button class = "btn btnFormulario mx-1" type = "submit" name = "Registrar">Registrarse</button>
         <button class = "btn btnFormulario mx-1" type = "reset">Vaciar</button>

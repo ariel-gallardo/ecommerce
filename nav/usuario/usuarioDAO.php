@@ -45,8 +45,10 @@
     //Inicio de sesion del usuario
     function loguearUsuario($usuario){
         if(isset($usuario)){
-            setcookie("Correo",$usuario["Correo"]);
-            setcookie("Password",$usuario["Password"]);
+            if($_POST["cookies"]){
+                setcookie("Correo",$usuario["Correo"],time() + 3600 * 24 * 7);
+                setcookie("Password",$usuario["Password"],time() + 3600 * 24 * 7);
+            }
             $_SESSION["Usuario"] = $usuario;
             return true;
         }
@@ -54,10 +56,10 @@
     }
 
     function desloguearUsuario(){
-        unset($_POST["Correo"]);
-        unset($_POST["Password"]);
-        setcookie("Correo","",-1);
-        setcookie("Password","",-1);
+        if(isset($_COOKIE["Correo"]) && isset($_COOKIE["Password"])){
+            setcookie("Correo","",-1);
+            setcookie("Password","",-1);
+        }
         session_destroy();
         echo
         "<script>
@@ -70,6 +72,7 @@
     function buscarUsuario(){
         $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt"),true);
         if(isset($usuarios)){
+
             foreach($usuarios as $usuario){
                 if(isset($_POST["Correo"]) ? $usuario["Correo"] === $_POST["Correo"] : $usuario["Correo"] === $_COOKIE["Correo"]){
                     if(isset($_POST["Password"]) ? password_verify($_POST["Password"],$usuario["Password"]) : $_COOKIE["Password"] === $usuario["Password"]){
