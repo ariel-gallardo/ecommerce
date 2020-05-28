@@ -1,4 +1,6 @@
-<?php include_once 'usuarioDAO.php' ?>
+<?php
+    include_once 'usuarioDAO.php'
+?>
 
 <!-- Formulario de Usuario -->
 <div class="tab-pane fade in show active" id="Login" role="tabpanel">
@@ -13,8 +15,12 @@
 <?php
     if(isset($_POST)){
         if(isset($_POST["Correo"]) && isset($_POST["Password"]) && !isset($_POST["Verify_Password"])){
-            $usuario = buscarUsuario();
-            loguearUsuario($usuario);
+            $_SESSION["Usuario"] = buscarUsuario();
+            if(loguearUsuario($_SESSION["Usuario"])){
+                echo "<script>alert('Bienvenido ".$_SESSION["Usuario"]["Nombre"]."')</script>";
+            }else{
+                echo "<script>alert('No se encuentran sus datos.')</script>";
+            }
         } 
     }
 ?>
