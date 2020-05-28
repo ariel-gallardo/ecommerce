@@ -13,6 +13,7 @@
         function crearUsuario(){
             if(isset($_POST)){
                 if(subirFoto()){
+                    if(buscarUsuario() === null)
                     $passEncriptado = password_hash($_POST["Password"],PASSWORD_DEFAULT);
                     if(password_verify($_POST["Password_Verify"],$passEncriptado)){
                         return [
