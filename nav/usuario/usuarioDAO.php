@@ -15,7 +15,7 @@
         }
 
         function crearUsuario(){
-            if(isset($_POST)){
+            if(isset($_POST["Registrar"])){
                 if(subirFoto()){
                     if(buscarUsuario() === null)
                     $passEncriptado = password_hash($_POST["Password"],PASSWORD_DEFAULT);
@@ -37,7 +37,16 @@
 
         function almacenarUsuario($usuario){
             $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt"),true);
-            $usuarios[] = $usuario;
+            if(isset($_SESSION["Usuario"])){
+                var_dump($usuario);
+                foreach($usuarios as &$usuarioDB){
+                    if($usuarioDB["Correo"] === $usuario["Correo"]){
+                        $usuarioDB = $usuario;
+                    }
+                }
+            }else{
+                $usuarios[] = $usuario;
+            }
             $usuarios = json_encode($usuarios);
             file_put_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt",$usuarios);
         }
@@ -84,6 +93,16 @@
         return null;
     }
 
+    function modificarUsuario(){
+        if($_SESSION["Usuario"]){
+            $_SESSION["Usuario"]["Nombre"] = $_POST["Nombre"];
+            $_SESSION["Usuario"]["Apellido"] = $_POST["Apellido"];
+            $_SESSION["Usuario"]["Provincia"] = $_POST["Provincia"];
+            $_SESSION["Usuario"]["Localidad"] = $_POST["Localidad"];
+            $_SESSION["Usuario"]["Calle"] = $_POST["Calle"];
+        }
+    }
+
     if((isset($_POST["Correo"]) && isset($_POST["Password"])) || isset($_COOKIE["Correo"], $_COOKIE["Password"])){
         if(!isset($_SESSION["Usuario"])){ // No hay usuario ingresado en el sistema
             if(isset($_POST["Password_Verify"])){ //Quiere registrarse
@@ -123,6 +142,16 @@
 
     if(isset($_POST["salirPerfil"])){
         desloguearUsuario();
+    }
+
+    if(isset($_POST["modificarPerfil"])){
+        modificarUsuario();
+        almacenarUsuario($_SESSION["Usuario"]);
+        echo
+        "<script>
+            alert('Se modificaron los datos con exito');
+            window.location.href = window.location.href;
+        </script>";
     }
 ?>
 
