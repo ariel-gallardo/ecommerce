@@ -1,17 +1,18 @@
 <?php
     $bd = [];
 
-    function crearArticulo(&$bd, $nomCategoria, $subCategoria = "", $nombre, $precio, $stock){
-        if(isset($bd[$nomCategoria])){
-          if(!empty($subCategoria)){
+    function crearArticulo(&$bd, $nomCategoria, $subCategoria = "", $nombre = "", $precio = "", $stock = ""){
+        if(isset($bd[$nomCategoria]) && !empty($nombre) && !empty($precio) && !empty($stock)){
+          if(!empty($subCategoria) && !empty($nomCategoria)){
               if(isset($bd[$nomCategoria][$subCategoria])){
                 $bd[$nomCategoria][$subCategoria][] = [$nombre, $precio, $stock];
                 return true;
               }
             return false;   
-          }    
-          $bd[$nomCategoria][] = [$nombre, $precio, $stock];
-          return true;
+          }else if(!empty($nomCategoria)){
+            $bd[$nomCategoria][] = [$nombre, $precio, $stock];
+                return true;
+            }
         }
         return false;
     }
