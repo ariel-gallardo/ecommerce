@@ -4,35 +4,8 @@
         <input class = "form-control my-2" type = "text" name = "Nombre"  placeholder = "Nombre/s" required>
         <input class = "form-control my-2" type = "text" name = "Apellido"  placeholder = "Apellido/s" required>
         <!-- Provincias ordenadas por codigo -->
-        <select class = "form-control my-2" name = "Provincia" placeholder="Provincia" required>
-            <option value = "NULL" selected disabled hidden>Provincia</option>
-            <option value = "BA">Buenos Aires</option>
-            <option value = "CA">Catamarca</option>
-            <option value = "CH">Chaco</option>
-            <option value = "CT">Chubut</option>
-            <option value = "CB">Córdoba</option>
-            <option value = "CR">Corrientes</option>
-            <option value = "ER">Entre Ríos</option>
-            <option value = "FO">Formosa</option>
-            <option value = "JY">Jujuy</option>
-            <option value = "LP">La Pampa</option>
-            <option value = "LR">La Rioja</option>
-            <option value = "MZ">Mendoza</option>
-            <option value = "MI">Misiones</option>
-            <option value = "NQ">Neuquén</option>
-            <option value = "RN">Río Negro</option>
-            <option value = "SA">Salta</option>
-            <option value = "SJ">San Juan</option>
-            <option value = "SL">San Luis</option>
-            <option value = "SC">Santa Cruz</option>
-            <option value = "SF">Santa Fe</option>
-            <option value = "SE">Santiago del Estero</option>
-            <option value = "TF">Tierra del Fuego</option>
-            <option value = "TU">Tucumán</option>
-        </select>
-        <select class = "form-control my-2" name="Localidad">
-            <option value = "NULL" selected disabled hidden>Localidad</option>
-        </select>
+        <input class = "form-control my-2" name = "Provincia" placeholder = "Provincia" required>
+        <input class = "form-control my-2" name = "Localidad" placeholder = "Localidad" required>
         <input class = "form-control my-2" type = "text" name = "Calle" placeholder = "Calle" required>
         <input class = "form-control my-2" type = "email" name = "Correo" placeholder = "Correo Electrónico" required>
         <input class = "form-control my-2" type = "password" name = "Password" placeholder = "Contraseña" required>
