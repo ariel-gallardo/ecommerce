@@ -2,15 +2,15 @@
     $bd = [];
 
     function crearArticulo(&$bd, $nomCategoria, $subCategoria = "", $nombre = "", $precio = "", $stock = ""){
-        if(isset($bd[$nomCategoria]) && !empty($nombre) && !empty($precio) && !empty($stock)){
+        if(isset($bd["Categoria"][$nomCategoria]) && !empty($nombre) && !empty($precio) && !empty($stock)){
           if(!empty($subCategoria) && !empty($nomCategoria)){
-              if(isset($bd[$nomCategoria][$subCategoria])){
-                $bd[$nomCategoria][$subCategoria][] = [$nombre, $precio, $stock];
+              if(isset($bd["Categoria"][$nomCategoria]["Categoria"][$subCategoria])){
+                $bd["Categoria"][$nomCategoria]["Categoria"][$subCategoria][] = [$nombre, $precio, $stock];
                 return true;
               }
             return false;   
           }else if(!empty($nomCategoria)){
-            $bd[$nomCategoria][] = [$nombre, $precio, $stock];
+            $bd["Categoria"][$nomCategoria][] = [$nombre, $precio, $stock];
                 return true;
             }
         }
@@ -18,21 +18,24 @@
     }
 
     function crearCategoria(&$bd, $categoria){
-        if(!isset($bd[$categoria])){                                                // Si no existe esta categoria en la base de datos.
-            $bd[$categoria] = [];                                                   // Crea la categoria en la base de datos.
+        if(!isset($bd["Categoria"][$categoria])){                                                // Si no existe esta categoria en la base de datos.
+            $bd["Categoria"][$categoria] = [];                                      // Crea la categoria en la base de datos.
           return true;                                                              // Fue creada con exito.
         }
         return false;                                                               // Fallo la creacion.
     }
 
-    function crearSubCategoria(&$bd, $categoria, $subCategoria){                            // Una Categoria existente y una sub Categoria a crear.
-        if(!crearCategoria($bd, $categoria) && !isset($bd[$categoria][$subCategoria])){     // Si no se puede crear la categoria porque ya existe y si la categoria seleccionada esta vacía
-            return crearCategoria($bd[$categoria], $subCategoria);                          // Dentro de esa categoria crear una nueva categoria.
+    function crearSubCategoria(&$bd, $categoria, $subCategoria){                                                        // Una Categoria existente y una sub Categoria a crear.
+        if(!crearCategoria($bd, $categoria) && !isset($bd["Categoria"][$categoria]["Categoria"][$subCategoria])){       // Si no se puede crear la categoria porque ya existe y si la categoria seleccionada esta vacía
+            return crearCategoria($bd["Categoria"][$categoria], $subCategoria);                                                      // Dentro de esa categoria crear una nueva categoria.
         }
-        return false;                                                                       // Fallo la creación.
+        return false;                                                                                                   // Fallo la creación.
     }
 
     //Pruebas
+    crearCategoria($bd, "Liquidos");
+        crearArticulo($bd, "Liquidos", "", "Agua", 50.99, 5);
+        
     crearCategoria($bd, "Audio");
         crearSubCategoria($bd, "Audio", "Auricular");
             crearArticulo($bd, "Audio", "Auricular", "Sony Stereo Headset", 499.99, 10);
@@ -50,29 +53,26 @@
             crearArticulo($bd, "Perfumeria", "Femenina", "420 Vip Rose", 699.99, 32);
             crearArticulo($bd, "Perfumeria", "Femenina", "Chance Chanel", 899.99, 81);
             crearArticulo($bd, "Perfumeria", "Femenina", "Biografia", 1299.99, 89);
+
 ?>
 <!--Seccion de Productos-->
-<?php if(!empty($bd)) :?>
-    <?php foreach ($bd as $categoria => $value): ?>
-    <?php foreach ($value as $subCategoria => $value): ?>
-    <?php $i = 0; foreach ($value as $articulo): ?>
-    <article class="col my-2">
-        <div class="card bg-transparent mx-auto shadow-lg">
-            <img class="img-fluid img-thumbnail m-2"
-                src="/img/main/producto/<?= $categoria."/".$subCategoria."/".$i.".jpg" ?>">
-            <div class="card-body">
-                <h6 class="card-title"><?= $articulo[0]; ?></h6>
-                <ul class="list-unstyled">
-                    <li>$ARS <?= $articulo[1]; ?></li>
-                    <li>Stock: <?= $articulo[2]; ?></li>
-                    <li class="btn btn-outline-info my-2">Agregar al Carrito</li>
-                </ul>
-            </div>
-        </div>
-    </article>
-    <?php $i++; endforeach; ?>
-    <?php endforeach; ?>
-    <?php endforeach; ?>
-<?php else: ?>
-    <h3 class="my-5 border rounded">No hay articulos</h3>
-<?php endif; ?>
+
+<?php
+        foreach ($bd["Categoria"] as $dirCategoria => $bdSubCategoria){ // <!--isset($bdSubCategoria["Categoria"]) -->
+            $i = 0;
+            foreach ($bdSubCategoria as $bdArticulos){
+                if(!isset($bdSubCategoria["Categoria"])){
+                    include 'main/producto.php';
+                    $i++;
+                }else{
+                    foreach ($bdArticulos as $dirSubCategoria => $articulos){
+                        $i = 0;
+                        foreach ($articulos as $articulo){
+                            include 'main/producto.php';
+                            $i++;
+                        }
+                    } 
+                }
+            }
+        }
+?>
