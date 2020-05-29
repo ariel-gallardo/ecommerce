@@ -1,5 +1,4 @@
 <?php
-    include_once 'usuarioDAO.php';
     if(!isset($_SESSION)){
         session_start();
     }

@@ -1,5 +1,3 @@
-<?php include_once 'usuarioDAO.php'?>
-
 <!-- Formulario de Registro -->
 <div class="tab-pane fade in show" id="Registro" role="tabpanel">
     <form action="." method="POST" enctype = "multipart/form-data">

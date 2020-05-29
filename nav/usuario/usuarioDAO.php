@@ -35,68 +35,81 @@
             return null;
         }
 
-        function almacenarUsuario($usuario){
-            $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt"),true);
-            if(isset($_SESSION["Usuario"])){
-                var_dump($usuario);
-                foreach($usuarios as &$usuarioDB){
-                    if($usuarioDB["Correo"] === $usuario["Correo"]){
-                        $usuarioDB = $usuario;
-                    }
+        function modificarUsuario(&$usuarios){
+            $_SESSION["Usuario"]["Nombre"] = $_POST["Nombre"];
+            $_SESSION["Usuario"]["Apellido"] = $_POST["Apellido"];
+            $_SESSION["Usuario"]["Provincia"] = $_POST["Provincia"];
+            $_SESSION["Usuario"]["Localidad"] = $_POST["Localidad"];
+            $_SESSION["Usuario"]["Calle"] = $_POST["Calle"];
+
+            foreach($usuarios as &$usuarioDB){
+                if($usuarioDB["Correo"] === $_SESSION["Usuario"]["Correo"]){
+                    $usuarioDB = $_SESSION["Usuario"];
+                    return("Se han modificado sus datos correctamente.");
                 }
-            }else{
-                $usuarios[] = $usuario;
             }
-            $usuarios = json_encode($usuarios);
-            file_put_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt",$usuarios);
+            return null; // "No se han podido modificar sus datos";
+        }
+
+        function registrarUsuario(&$usuarios){      
+            $usuario = crearUsuario();
+            if(isset($usuario)){
+                $usuarios[] = $usuario;
+                return("Bienvenido nuevo cliente: ".end($usuarios)["Nombre"]);
+            }
+            return null;
+        }
+
+        function obtenerUsuarios(){
+            $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt"),true);
+            return $usuarios;
+        }
+
+        function almacenarUsuario($usuarios, $tarea){
+            $mensaje = $tarea($usuarios);
+            if(isset($mensaje)){
+                $usuarios = json_encode($usuarios);
+                file_put_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt",$usuarios);
+                return $mensaje;
+            }
+            return null;
         }
 
     //Inicio de sesion del usuario
     function loguearUsuario($usuario){
         if(isset($usuario)){
-            if($_POST["cookies"]){
+            if(isset($_POST["cookies"])){
                 setcookie("Correo",$usuario["Correo"],time() + 3600 * 24 * 7);
                 setcookie("Password",$usuario["Password"],time() + 3600 * 24 * 7);
             }
             $_SESSION["Usuario"] = $usuario;
-            return true;
+            return "Bienvenido ".$_SESSION["Usuario"]["Nombre"];
         }
-        return false;
+        return "No se encuentra un usuario con esos datos.";
     }
 
     function desloguearUsuario(){
         if(isset($_COOKIE["Correo"]) && isset($_COOKIE["Password"])){
-            setcookie("Correo","",-1);
-            setcookie("Password","",-1);
+            setcookie("Correo","",-1,'/');
+            setcookie("Password","",-1,'/'); 
         }
         session_destroy();
-        actualizarSolicitud("Adios hasta la proxima.");
+        return "Adios hasta la proxima.";
     }       
 
     // Busqueda del usuario
     function buscarUsuario(){
-        $usuarios = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."\db\usuarios.txt"),true);
+        $usuarios = obtenerUsuarios();
         if(isset($usuarios)){
-
             foreach($usuarios as $usuario){
-                if(isset($_POST["Correo"]) ? $usuario["Correo"] === $_POST["Correo"] : $usuario["Correo"] === $_COOKIE["Correo"]){
-                    if(isset($_POST["Password"]) ? password_verify($_POST["Password"],$usuario["Password"]) : $_COOKIE["Password"] === $usuario["Password"]){
+                if(isset($_POST["Loguear"]) ? $usuario["Correo"] === $_POST["Correo"] : $usuario["Correo"] === $_COOKIE["Correo"]){
+                    if(isset($_POST["Loguear"]) ? password_verify($_POST["Password"],$usuario["Password"]) : $_COOKIE["Password"] === $usuario["Password"]){
                         return $usuario;
                     }
                 }
             }
         }
         return null;
-    }
-
-    function modificarUsuario(){
-        if($_SESSION["Usuario"]){
-            $_SESSION["Usuario"]["Nombre"] = $_POST["Nombre"];
-            $_SESSION["Usuario"]["Apellido"] = $_POST["Apellido"];
-            $_SESSION["Usuario"]["Provincia"] = $_POST["Provincia"];
-            $_SESSION["Usuario"]["Localidad"] = $_POST["Localidad"];
-            $_SESSION["Usuario"]["Calle"] = $_POST["Calle"];
-        }
     }
 
     function actualizarSolicitud($mensaje){
@@ -106,35 +119,35 @@
              </script>";
     }
 
-    if((isset($_POST["Correo"]) && isset($_POST["Password"])) || isset($_COOKIE["Correo"], $_COOKIE["Password"])){
-        if(!isset($_SESSION["Usuario"])){ // No hay usuario ingresado en el sistema
-            if(isset($_POST["Password_Verify"])){ //Quiere registrarse
-                $usuario = crearUsuario();
-                if(isset($usuario)){
-                    almacenarUsuario($usuario);
-                    actualizarSolicitud("Bienvenido nuevo cliente: ".$usuario["Nombre"]);
-                }else{
-                    actualizarSolicitud("Ya existe la cuenta");
-                }
-            }else if(loguearUsuario(buscarUsuario())){ //Quiere loguearse.
-                actualizarSolicitud("Bienvenido ".$_SESSION["Usuario"]["Nombre"]);
-            }else{ //Quiere loguear pero no existe en el sistema.
-                unset($_POST["Correo"]);
-                unset($_POST["Password"]);
-                actualizarSolicitud("No se encuentran sus datos.");
-            }
+    /*
+        Cada vez que se envia alguna solicitud 
+        via post o al iniciar el navegador
+        ocurre alguna de estas acciones
+    */
+
+    if(isset($_COOKIE["Correo"],$_COOKIE["Password"]) && !isset($_SESSION["Usuario"])){
+        actualizarSolicitud(loguearUsuario(buscarUsuario()));
+    }
+    
+    if(isset($_POST)){
+        switch(array_key_last($_POST)){
+            case "Registrar":
+                $mensaje = almacenarUsuario(obtenerUsuarios(),'registrarUsuario');
+                actualizarSolicitud(isset($mensaje) ? $mensaje : "Ya existe el usuario" );
+            break;
+            case "Loguear":  
+                actualizarSolicitud(loguearUsuario(buscarUsuario()));
+            break;
+            case "modificarPerfil":
+                $mensaje = almacenarUsuario(obtenerUsuarios(),'modificarUsuario');
+                actualizarSolicitud(isset($mensaje) ? $mensaje : "No se ha logrado modificar." );
+            break;
+            case "salirPerfil":
+                actualizarSolicitud(desloguearUsuario());
+            break;
         }
     }
 
-    if(isset($_POST["salirPerfil"])){
-        desloguearUsuario();
-    }
-
-    if(isset($_POST["modificarPerfil"])){
-        modificarUsuario();
-        almacenarUsuario($_SESSION["Usuario"]);
-        actualizarSolicitud("Se modificaron los datos con exito.");
-    }
 ?>
 
 

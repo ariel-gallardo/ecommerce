@@ -7,7 +7,7 @@
             <input type="checkbox" class="form-check-input" name = "cookies" id="cookies">
             <label class="form-check-label" for="cookies">¿Inicio de sesion automatico?</label>
         </div>
-        <button class="btn btnFormulario mx-1" type="submit">Ingresar</button>
-        <button class="btn btnFormulario mx-1" type="reset">Vaciar</button>
+        <button class="btn btnFormulario mx-1" type = "submit" name = "Loguear" value = "Loguear">Ingresar</button>
+        <button class="btn btnFormulario mx-1" type = "reset">Vaciar</button>
     </form>
 </div>
