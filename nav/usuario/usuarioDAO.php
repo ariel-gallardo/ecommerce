@@ -90,8 +90,8 @@
 
     function desloguearUsuario(){
         if(isset($_COOKIE["Correo"]) && isset($_COOKIE["Password"])){
-            setcookie("Correo","",-1,'/');
-            setcookie("Password","",-1,'/'); 
+            setcookie("Correo","",time() - 3600,'/');
+            setcookie("Password","",time() - 3600,'/'); 
         }
         session_destroy();
         return "Adios hasta la proxima.";
