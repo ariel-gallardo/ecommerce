@@ -5,7 +5,7 @@
         if(isset($bd[$nomCategoria])){
           if(!empty($subCategoria)){
               if(isset($bd[$nomCategoria][$subCategoria])){
-                $bd[$nomCategoria][$subCategoria][] = [$nombre, $precio];
+                $bd[$nomCategoria][$subCategoria][] = [$nombre, $precio, $stock];
                 return true;
               }
             return false;   
