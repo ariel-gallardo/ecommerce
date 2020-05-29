@@ -58,7 +58,7 @@
     <article class="col my-2">
         <div class="card bg-transparent mx-auto shadow-lg">
             <img class="img-fluid img-thumbnail m-2"
-                src="/img/main/producto/categoria/<?= $categoria."/".$subCategoria."/".$i.".jpg" ?>">
+                src="/img/main/producto/<?= $categoria."/".$subCategoria."/".$i.".jpg" ?>">
             <div class="card-body">
                 <h6 class="card-title"><?= $articulo[0]; ?></h6>
                 <ul class="list-unstyled">
